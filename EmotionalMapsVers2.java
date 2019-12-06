@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;porco dio
 
 public class EmotionalMapsVers2 {
 	
@@ -39,7 +39,7 @@ public class EmotionalMapsVers2 {
 						  StampaMap();
 					  }
 					  else
-						  throw new ComandiException("Il comando inserito non è corretto!\n");
+						  throw new ComandiException("Il comando inserito non Ã¨ corretto!\n");
 				}
 			  
 		  }
