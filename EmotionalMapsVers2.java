@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;porco dio
+import java.util.List;
 
 public class EmotionalMapsVers2 {
 	
