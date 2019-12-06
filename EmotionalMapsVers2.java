@@ -7,24 +7,29 @@ public class EmotionalMapsVers2 {
 	static TreeMapEventi TreeEventi;
 	static List<int[][]> map;
 	
-	  public static void main(String[] args) throws IOException,EventiException,ComandiException 
+	  public static void main(String[] args) throws IOException
 	  {
 		  TreeEventi=new TreeMapEventi();
 		  map=new ArrayList<int[][]>();
 		  String comandipath="";
 		  BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		  File file;
+		  
 		  System.out.println("Specifica il percorso del file comandi da inserire!\n");
-		  comandipath=br.readLine();
-		  if (comandipath == "")
-			  System.out.println("Inserire un percorso valido per la lettura del file!\n");
 		  try
 		  {
-			  File file = new File(comandipath);
+
+			  comandipath=br.readLine();
+			  if (comandipath == "")
+				  System.out.println("Inserire un percorso valido per la lettura del file!\n");
+
+			  file = new File(comandipath);
 			  br = new BufferedReader(new FileReader(file));
 			  String tmp="";
 			  
-			  while ((tmp=br.readLine())!= null)
+                do
 				{
+				  tmp=br.readLine();
 				  String eventoargomento=tmp.substring(tmp.indexOf('(')+1, tmp.indexOf(')'));
 				  if(tmp.matches("import(.+)"))
 				  {
@@ -32,25 +37,27 @@ public class EmotionalMapsVers2 {
 					  Operazioni.Import(comandipath+eventoargomento);
 				  }
 				  else
-					  if(tmp.matches("create_map(.+)"))
+				  {
+					  if(tmp.matches("create_map(.+)")&& eventoargomento.contains("-"))
 					  {
 						  String[] intervallo=eventoargomento.split("-");
 						  map=Operazioni.CreateMap(intervallo[0],intervallo[1]);
 						  StampaMap();
 					  }
 					  else
-						  throw new ComandiException("Il comando inserito non Ã¨ corretto!\n");
-				}
-			  
+						  throw new ComandiException("Il comando inserito non è corretto!\n");
+				  }
+				}while (br.ready());
 		  }
-		  catch (Exception e)
+		  catch (Throwable e)
 		  {
 			  System.out.println("Errore:"+e.getMessage()+"\n");
 		  }
-		  finally 
+		  finally
 		  {
 			  br.close();
 		  }
+	
 	  }
 	  
 	  static private void StampaMap ()

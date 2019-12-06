@@ -53,7 +53,7 @@ public class Evento {
 	}
 	public void setUserId (String Id) throws EventiException
 	{
-		if (Id.matches("\\w+"))//qualsiasi carattere che sia un numero o una lettera dell'alfabeto (che si ripete una o piu volte)
+		if (Id.matches("\\w+")&& Id.length()==5)//qualsiasi carattere che sia un numero o una lettera dell'alfabeto (che si ripete una o piu volte)
 			userId=Id;
 		else
 			throw new EventiException("Formato UserId non inserito correttamente");//darai l'eccezione con la rispettiva linea dell'evento scorretto
@@ -72,7 +72,7 @@ public class Evento {
 
 	{
 		String[] tmp;
-		if (coord.matches("45\\.[0-9]+,9\\.[0-9]+")) 
+		if (coord.matches("[0-9]{1,3}\\.[0-9]{3},[0-9]{1,3}\\.[0-9]{3}")) 
 		{
 			tmp=coord.split(",");
 			latitudine=Double.parseDouble(tmp[0]);
