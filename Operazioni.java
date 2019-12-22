@@ -1,3 +1,5 @@
+package soluzione;
+
 import java.io.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -10,24 +12,24 @@ public class Operazioni {
 		File file = new File(filename); 
 		BufferedReader br = new BufferedReader(new FileReader(file)); 
 		int riga=1;
-		String tmp="";
+		String tmpEvento="";
 		
-		while ((tmp=br.readLine())!= null)
+		while ((tmpEvento=br.readLine())!= null)
 		{
-			String[] campi;
-			campi=tmp.split(" ");
+			String[] campiEvento;
+			campiEvento=tmpEvento.split(" ");
 			
 			try
 			{
-			  LocalDate timestamp=convertToLocalDate(campi[2]);
-			  Evento evento=new Evento(campi[0],campi[1],campi[3],campi[4],campi[5]);
-			  if (EmotionalMapsVers2.TreeEventi.containsKey(timestamp))
+			  LocalDate timestamp=convertToLocalDate(campiEvento[2]);
+			  Evento evento=new Evento(campiEvento[0],campiEvento[1],campiEvento[3],campiEvento[4],campiEvento[5]);
+			  if (EmotionalMaps.treeEventi.containsKey(timestamp))
 			  {
-				  if(!EmotionalMapsVers2.TreeEventi.modify(timestamp,evento))
+				  if(!EmotionalMaps.treeEventi.modify(timestamp,evento))
 					  throw new EventiException("Evento gia' presente");
 			  }
 			  else
-				  EmotionalMapsVers2.TreeEventi.put(timestamp,evento);
+				  EmotionalMaps.treeEventi.put(timestamp,evento);
 			}
 			catch (EventiException e)
 			{
@@ -43,8 +45,8 @@ public class Operazioni {
 	static ArrayList<int [][]> CreateMap (String datainizio,String datafine) throws EventiException
 	{
 		int NumPOI=PuntoDiInteresse.values().length,NumStatiEmozione=StatoEmozione.values().length;	
-		SortedMap<LocalDate,HashSet<Evento>> subMap=EmotionalMapsVers2.TreeEventi.SubMap(convertToLocalDate(datainizio),convertToLocalDate(datafine));
-		ArrayList<int[][]> map=new ArrayList<int[][]>();
+		SortedMap<LocalDate,HashSet<Evento>> subMap=EmotionalMaps.treeEventi.SubMap(convertToLocalDate(datainizio),convertToLocalDate(datafine));
+		ArrayList<int[][]> tmpEmotionalMap=new ArrayList<int[][]>();
 		int[][] Utenti_attivi=new int[NumPOI][NumStatiEmozione],AllUtenti=new int[NumPOI][NumStatiEmozione];
 		int[] NumEventiPOIUtenti_attivi=new int[NumPOI],NumEventiPOIAllUtenti=new int[NumPOI];
 		
@@ -61,9 +63,9 @@ public class Operazioni {
 		}
 		
 		//carico
-		for (HashSet<Evento> eventi : subMap.values())
+		for (HashSet<Evento> hashsetEventi : subMap.values())
 		{
-			for(Evento evento : eventi)
+			for(Evento evento : hashsetEventi)
 			{
 				int posPuntoInteresse=evento.getPOI().ordinal();
 				int posEmozione=evento.getStatoEmozione().ordinal();
@@ -98,10 +100,10 @@ public class Operazioni {
 			}
 		
 		//inserisco nella lista
-		map.add(Utenti_attivi);
-		map.add(AllUtenti);
+		tmpEmotionalMap.add(Utenti_attivi);
+		tmpEmotionalMap.add(AllUtenti);
 
-		return map;
+		return tmpEmotionalMap;
 	}
 	
 	private static LocalDate convertToLocalDate(String timestamp) throws EventiException
@@ -109,8 +111,7 @@ public class Operazioni {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
 		try 
 		{
-			LocalDate tmp=null;
-            return tmp=LocalDate.parse(timestamp, formatter);
+            return LocalDate.parse(timestamp, formatter);
 		} 
 		catch (DateTimeException e) 
 		{ 

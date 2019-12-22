@@ -1,4 +1,6 @@
-import java.time.LocalDate;
+package soluzione;
+
+ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -13,7 +15,7 @@ public class TreeMapEventi extends TreeMap<LocalDate,HashSet<Evento>> {
 	
 	public void put(LocalDate timestamp,Evento evento)
 	{
-		HashSet<Evento> hashSetTmp=new HashSet<Evento>();
+		HashSet<Evento> hashSetTmp=new HashSet<Evento>(50);//initial capacity partendo da un massimo di eventi di 50 al giorno diviso il load factor non ci dovrebbero essere più rehash
 		hashSetTmp.add(evento);
 		super.put(timestamp, hashSetTmp);
 	}

@@ -1,3 +1,4 @@
+package soluzione;
 
 @SuppressWarnings("serial")
 public class EventiException extends Throwable

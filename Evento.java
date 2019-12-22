@@ -1,3 +1,4 @@
+package soluzione;
 import java.util.Objects;
 
 public class Evento {
@@ -34,16 +35,11 @@ public class Evento {
 		if(stato_ut.contains("LOGOUT"))
 			stato_utente=false;
 		else
-		{			
-			if(stato_registrazione)
-			{
+		{
 				if (stato_ut.contains("LOGIN"))
 					stato_utente=true;
 				else
 					throw new EventiException("Formato stato utente non inserito correttamente");
-			}		
-			else
-				throw new EventiException("Non puo effettuare un login se non sei registrato");
 		}
 	}
 	
@@ -88,18 +84,19 @@ public class Evento {
 	}
 	public void setStatoEmozione (String emoz) throws EventiException
 	{
-		boolean flag=true;
-		for(StatoEmozione tmp: StatoEmozione.values())
+		boolean inserito=false;
+		for(StatoEmozione statoEmozione: StatoEmozione.values())
 		{
-			if(emoz.toUpperCase().trim().equals(tmp.GetEmozione()))
+			emoz=emoz.toUpperCase().trim();//rimuovo gli spazi e metto tutto maiuscolo
+			if(emoz.equals(statoEmozione.GetEmozione()))
 			{
-				emozione=tmp;
-				flag=false;
+				emozione=statoEmozione;
+				inserito=true;
 				break;
 			}
 		}
 		
-		if(flag)
+		if(!inserito)
 			throw new EventiException("Formato emozione non inserito correttamente");
 	}
 	
@@ -110,21 +107,21 @@ public class Evento {
 	
 	public void setPOI () throws EventiException
 	{
-		boolean flag=true;
+		boolean inserito=false;
 		double approssLat,approssLon;
 		double range=0.003;
-		for(PuntoDiInteresse tmp: PuntoDiInteresse.values())
+		for(PuntoDiInteresse puntoDiInteresse: PuntoDiInteresse.values())
 		{
-			approssLat=Math.abs(this.latitudine-tmp.GetLatitudine());
-			approssLon=Math.abs(this.longitudine-tmp.GetLongitudine());
+			approssLat=Math.abs(this.latitudine-puntoDiInteresse.GetLatitudine());
+			approssLon=Math.abs(this.longitudine-puntoDiInteresse.GetLongitudine());
 			if((approssLat < range)&&(approssLon < range ))
 			{
-				POI=tmp;
-				flag=false;
+				POI=puntoDiInteresse;
+				inserito=true;
 				break;
 			}
 		}
-		if(flag)
+		if(!inserito)
 			throw new EventiException("L'utente non è vicino ad uno dei POI");
 	}
 	
@@ -146,18 +143,19 @@ public class Evento {
 	}
 	
 	public boolean equals(Object obj) { 
+		
 		if (obj == this) 
 			return true; 
 		if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
 		
-		Evento tmp = (Evento) obj;
-		return((stato_registrazione==tmp.stato_registrazione)&&
-		      (stato_utente==tmp.stato_utente)&&
-		      (userId.equals(tmp.userId))&&
-		      (POI==tmp.POI)&&
-		      (emozione==tmp.emozione));
+		Evento evento = (Evento) obj;
+		return((stato_registrazione==evento.stato_registrazione)&&
+		      (stato_utente==evento.stato_utente)&&
+		      (userId.equals(evento.userId))&&
+		      (POI==evento.POI)&&
+		      (emozione==evento.emozione));
 	}
 	
 	 public int hashCode() 

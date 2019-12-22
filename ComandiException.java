@@ -1,3 +1,4 @@
+package soluzione;
 
 @SuppressWarnings("serial")
 public class ComandiException  extends Throwable

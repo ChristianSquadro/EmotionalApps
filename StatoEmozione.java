@@ -1,3 +1,4 @@
+package soluzione;
 
 public enum StatoEmozione {
 	Arrabbiato ("A"),

@@ -1,3 +1,4 @@
+package soluzione;
 
 public enum PuntoDiInteresse {
 	POI1(45.464,9.190),
