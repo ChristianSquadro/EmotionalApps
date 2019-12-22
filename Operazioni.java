@@ -31,7 +31,7 @@ public class Operazioni {
 			  else
 				  EmotionalMaps.treeEventi.put(timestamp,evento);
 			}
-			catch (EventiException e)
+			catch (Throwable e)
 			{
 				System.out.println(e.getMessage() + " alla riga:" + riga);
 			}
@@ -42,13 +42,17 @@ public class Operazioni {
 		br.close();
 	}
 	
-	static ArrayList<int [][]> CreateMap (String datainizio,String datafine) throws EventiException
+	static ArrayList<int [][]> CreateMap (String datainizio,String datafine) throws Throwable
 	{
 		int NumPOI=PuntoDiInteresse.values().length,NumStatiEmozione=StatoEmozione.values().length;	
-		SortedMap<LocalDate,HashSet<Evento>> subMap=EmotionalMaps.treeEventi.SubMap(convertToLocalDate(datainizio),convertToLocalDate(datafine));
+		SortedMap<LocalDate,HashSet<Evento>> subMap;
 		ArrayList<int[][]> tmpEmotionalMap=new ArrayList<int[][]>();
 		int[][] Utenti_attivi=new int[NumPOI][NumStatiEmozione],AllUtenti=new int[NumPOI][NumStatiEmozione];
 		int[] NumEventiPOIUtenti_attivi=new int[NumPOI],NumEventiPOIAllUtenti=new int[NumPOI];
+		
+		
+		//Estraggo la sottomappa dalla TreeMap
+		subMap=EmotionalMaps.treeEventi.SubMap(convertToLocalDate(datainizio),convertToLocalDate(datafine));
 		
 		//inizializzo
 		for (int i=0;i<NumPOI;i++)
@@ -106,7 +110,7 @@ public class Operazioni {
 		return tmpEmotionalMap;
 	}
 	
-	private static LocalDate convertToLocalDate(String timestamp) throws EventiException
+	private static LocalDate convertToLocalDate(String timestamp) throws Throwable
 	{
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
 		try 
@@ -115,7 +119,7 @@ public class Operazioni {
 		} 
 		catch (DateTimeException e) 
 		{ 
-			throw new EventiException("Formato data non inserito correttamente");
+			throw new Throwable("Formato data non inserito correttamente");
 		}
 	}
 }

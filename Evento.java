@@ -128,18 +128,12 @@ public class Evento {
 	
 	public Evento (String stato_reg,String stato_ut,String Id,String coord,String emoz) throws EventiException
 	{
-		try {
 			setStato_registrazione(stato_reg);
 			setStato_utente(stato_ut);
 			setUserId(Id);
 			setCoordinate(coord);
 			setStatoEmozione(emoz);
 			setPOI();
-		}
-		catch (EventiException eventi)
-		{
-			throw eventi;//conterrà quale campo ha generato l'eccezione
-		}
 	}
 	
 	public boolean equals(Object obj) { 

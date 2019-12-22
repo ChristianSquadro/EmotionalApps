@@ -34,9 +34,19 @@ public class TreeMapEventi extends TreeMap<LocalDate,HashSet<Evento>> {
 		return super.containsKey(timestamp);
 	}
 	
-	public SortedMap<LocalDate,HashSet<Evento>> SubMap(LocalDate datainizio,LocalDate datafine)
+	public SortedMap<LocalDate,HashSet<Evento>> SubMap(LocalDate datainizio,LocalDate datafine) throws ComandiException
 	{	
-		return super.subMap(datainizio,true,datafine,true);
+		SortedMap<LocalDate,HashSet<Evento>> tmpSubMap;
+		
+		try
+		{
+			tmpSubMap=super.subMap(datainizio,true,datafine,true);
+			return tmpSubMap;
+		}
+		catch(IllegalArgumentException e)
+		{
+			throw new ComandiException("Data iniziale superiore a data finale");
+		}
 	}
 	
 	private HashSet<Evento> get(LocalDate timestamp)
