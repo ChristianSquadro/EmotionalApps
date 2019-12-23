@@ -3,7 +3,7 @@ package soluzione;
 @SuppressWarnings("serial")
 
 /**
-*La classe ComandiException è una forma di Throwable che
+*La classe ComandiException è una estensione di Throwable che
 *indica errori sollevati dalla classe Comandi.
 */
 
