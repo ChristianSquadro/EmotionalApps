@@ -3,7 +3,7 @@ package soluzione;
 @SuppressWarnings("serial")
 
 /**
-*La classe EventiException è una forma di Throwable che
+*La classe EventiException è una estensione della classe Throwable che
 * indica errori che si verificano nella classe Evento.
 */
 
