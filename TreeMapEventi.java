@@ -26,7 +26,7 @@ public class TreeMapEventi extends TreeMap<LocalDate,HashSet<Evento>> {
 	/**
 	*Inserisce un nuovo HashSet all'interno dell'istanza di TreeMapEventi
 	*che esegue il metodo passando come parametri timestamp e evento.
-	*@param timestamp Il giorno.
+	*@param timestamp La data.
 	*@param evento L'evento.
 	*/
 	public void put(LocalDate timestamp,Evento evento)
@@ -40,7 +40,7 @@ public class TreeMapEventi extends TreeMap<LocalDate,HashSet<Evento>> {
 	*Controlla se all'interno del nodo dell'istanza di TreeMapEventi che
 	*esegue il metodo è presente un HashSet con lo stesso evento passando
 	*come parametro timestamp e evento
-	*@param timestamp Il giorno.
+	*@param timestamp La data.
 	*@param evento L'evento.
 	*@return resultModify TRUE se la modifica è avvenuta o FALSE se non è
 	*avvenuta.
@@ -57,7 +57,7 @@ public class TreeMapEventi extends TreeMap<LocalDate,HashSet<Evento>> {
 	/**
 	*Controlla se l'istanza di TreeMapEventi che esegue il metodo
 	*contiene la chiave passata come parametro con timestamp.
-	*@param timestamp Il giorno.
+	*@param timestamp La data.
 	*@return TRUE se l'istanza di TreeMapEventi che esegue il metodo contiene
 	*la chiave; FALSE se l'istanza di TreeMapEventi che esegue il metodo non
 	*contiene la chiave.
@@ -93,7 +93,7 @@ public class TreeMapEventi extends TreeMap<LocalDate,HashSet<Evento>> {
 	/**
 	*Restituisce l'HashSet contenuta nel nodo che ha come chiave la data
 	*passata come parametro con timestamp.
-	*@param timestamp Il giorno.
+	*@param timestamp La data.
 	*@return super.get(timestamp) L'HashSet contenuta nel nodo
 	*/
 	private HashSet<Evento> get(LocalDate timestamp)
