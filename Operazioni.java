@@ -5,8 +5,20 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+*Le istanze della classe Operazioni modellano le attività da svolgere quando
+*si legge il Comandi.txt.
+*/
 public class Operazioni {
 	
+	/**
+	*Apre e legge il file contenente gli Eventi riga per riga ricevendo 
+	*come parametro filename creando una nuova istanza di Evento ad 
+	*ogni riga del file,controllando se l'evento è già presente
+	*nell'istanza di TreeMapEventie modificandolo oppure inserendolo se non è presente.
+	*@param filename Il nome del file.
+	*@throws IOException se il file non viene trovato.
+	*/
 	static void Import (String filename) throws IOException
 	{
 		File file = new File(filename); 
@@ -42,7 +54,15 @@ public class Operazioni {
 		br.close();
 	}
 	
-	static ArrayList<int [][]> CreateMap (String datainizio,String datafine) throws Throwable
+	/**
+	*Crea le mappe relative agli utenti attivi e a tutti gli utenti
+	*ricevendo come parametro dataInizo e dataFine.
+	*@param dataInizio Data minima per l'estrazione della sottomappa.
+	*@param dataFine Data massima per l'estrazione della sottomappa.
+	*@return tmpEmotionalMap ArrayList contenente le 2 mappe.
+	*@throws Throwable se EmotionalMaps.treeEventi.SubMap contiene dataInizio maggiore di dataFine.
+	*/
+	static ArrayList<int [][]> CreateMap (String dataInizio,String dataFine) throws Throwable
 	{
 		int NumPOI=PuntoDiInteresse.values().length,NumStatiEmozione=StatoEmozione.values().length;	
 		SortedMap<LocalDate,HashSet<Evento>> subMap;
@@ -52,7 +72,7 @@ public class Operazioni {
 		
 		
 		//Estraggo la sottomappa dalla TreeMap
-		subMap=EmotionalMaps.treeEventi.SubMap(convertToLocalDate(datainizio),convertToLocalDate(datafine));
+		subMap=EmotionalMaps.treeEventi.SubMap(convertToLocalDate(dataInizio),convertToLocalDate(dataFine));
 		
 		//inizializzo
 		for (int i=0;i<NumPOI;i++)
@@ -110,12 +130,20 @@ public class Operazioni {
 		return tmpEmotionalMap;
 	}
 	
+	/**
+	*Converte la  stringa timerstamp fornita come parametro
+	*in un tipo LocalDate per poter essere utilizzato all'interno
+	*della TreeMap.
+	*@return LocalDate.parse L'oggetto convertito il LocalDate.
+	*@throws Throwable se la data non ha il formato corretto.
+	*/
 	private static LocalDate convertToLocalDate(String timestamp) throws Throwable
 	{
+		//formattazione della data
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
 		try 
 		{
-            return LocalDate.parse(timestamp, formatter);
+            		return LocalDate.parse(timestamp, formatter);
 		} 
 		catch (DateTimeException e) 
 		{ 
