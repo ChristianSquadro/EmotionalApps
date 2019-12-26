@@ -8,9 +8,9 @@ import java.util.TreeMap;
 @SuppressWarnings("serial")
 
 /**
-*Le istanze della classe TreeMapEventi estendono la classe TreeMap che conterrà
+*TreeMapEventi estende la classe TreeMap che conterrà
 *istanze della classe Evento.
-*I nodi sono organizzati per Data e contengono un HashSet di Evento.
+*I suoi elementi sono oradinati per Data in cui l'evento si è verificato e ogni elemento contiene un HashSet di Eventi.
 */
 public class TreeMapEventi extends TreeMap<LocalDate,HashSet<Evento>> {
 
