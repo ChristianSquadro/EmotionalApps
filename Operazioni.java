@@ -61,7 +61,8 @@ public class Operazioni {
 	*@param dataInizio Data minima per l'estrazione della sottomappa.
 	*@param dataFine Data massima per l'estrazione della sottomappa.
 	*@return tmpEmotionalMap ArrayList contenente le 2 mappe.
-	*@throws Throwable se EmotionalMaps.treeEventi.SubMap contiene dataInizio maggiore di dataFine o se il fomrto della data inserita è scorretto.
+	*@throws Throwable se EmotionalMaps.treeEventi.SubMap contiene dataInizio maggiore di dataFine
+	*o se il formato della data inserita è scorretto.
 	*/
 	static ArrayList<int [][]> CreateMap (String dataInizio,String dataFine) throws Throwable
 	{
