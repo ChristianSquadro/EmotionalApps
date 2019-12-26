@@ -31,7 +31,10 @@ public class TreeMapEventi extends TreeMap<LocalDate,HashSet<Evento>> {
 	*/
 	public void put(LocalDate timestamp,Evento evento)
 	{
-		HashSet<Evento> hashSetTmp=new HashSet<Evento>(50);//initial capacity partendo da un massimo di eventi di 50 al giorno diviso il load factor non ci dovrebbero essere più rehash
+		/**initial capacity partendo da un massimo di eventi di 50 al giorno diviso 
+		*il load factor non ci dovrebbero essere più rehash
+		*/
+		HashSet<Evento> hashSetTmp=new HashSet<Evento>(50);
 		hashSetTmp.add(evento);
 		super.put(timestamp, hashSetTmp);
 	}
