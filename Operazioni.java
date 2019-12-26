@@ -136,7 +136,7 @@ public class Operazioni {
 	*Converte la  stringa timestamp fornita come parametro
 	*in un tipo LocalDate per poter essere utilizzato all'interno
 	*della TreeMap.
-	*@return LocalDate.parse L'oggetto convertito il LocalDate.
+	*@return LocalDate.parse L'oggetto convertito in LocalDate.
 	*@throws Throwable se la data non ha il formato corretto.
 	*/
 	private static LocalDate convertToLocalDate(String timestamp) throws Throwable
