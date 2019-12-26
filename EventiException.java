@@ -11,8 +11,7 @@ public class EventiException extends Throwable
 {
 	/**
 	*Costruisco un'istanza della classe EventiException che indica
-	*un'eccezione non controllata della classe Eventi aggiungendo 
-	*un messaggio personalizzato.
+	*un'eccezione controllata della classe Eventi.
 	*@param ErrorException il messaggio di errore.
 	*/
 	public EventiException (String ErrorExcetpion)
