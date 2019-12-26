@@ -23,7 +23,7 @@ public class Evento {
 	
 	/**
 	*Modifica lo stato_registrazione dell'istanza di Evento che esegue il metodo
-	*con lo stato_registrazione fornito come argomento.
+	*con lo stato_registrazione fornito come parametro.
 	*Viene salvato come boolean TRUE se stato_registrazione = IN.
 	*Viene salvato come boolean FALSE se stato_registrazione = OUT.
 	*@param stato_reg Lo stato di registrazione nell'Evento.
@@ -260,6 +260,7 @@ public class Evento {
 	/**
 	*Restituisce il valore dell'hash code dell'istanza di Evento
 	*che esegue il metodo.
+	*@return l'hash code dell'evento
 	*/
 	 public int hashCode() 
 	 {
