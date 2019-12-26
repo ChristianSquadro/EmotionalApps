@@ -15,9 +15,10 @@ public class Operazioni {
 	*Apre e legge il file contenente gli Eventi riga per riga ricevendo 
 	*come parametro filename creando una nuova istanza di Evento ad 
 	*ogni riga del file,controllando se l'evento è già presente
-	*nell'istanza di TreeMapEventie modificandolo oppure inserendolo se non è presente.
+	*nell'istanza di TreeMapEventi modificandolo oppure inserendolo se non è presente.
 	*@param filename Il nome del file.
 	*@throws IOException se il file non viene trovato.
+	+@throws EventiException se gli input degli eventi non sono validi.
 	*/
 	static void Import (String filename) throws IOException
 	{
@@ -60,7 +61,7 @@ public class Operazioni {
 	*@param dataInizio Data minima per l'estrazione della sottomappa.
 	*@param dataFine Data massima per l'estrazione della sottomappa.
 	*@return tmpEmotionalMap ArrayList contenente le 2 mappe.
-	*@throws Throwable se EmotionalMaps.treeEventi.SubMap contiene dataInizio maggiore di dataFine.
+	*@throws Throwable se EmotionalMaps.treeEventi.SubMap contiene dataInizio maggiore di dataFine o se il fomrto della data inserita è scorretto.
 	*/
 	static ArrayList<int [][]> CreateMap (String dataInizio,String dataFine) throws Throwable
 	{
@@ -131,7 +132,7 @@ public class Operazioni {
 	}
 	
 	/**
-	*Converte la  stringa timerstamp fornita come parametro
+	*Converte la  stringa timestamp fornita come parametro
 	*in un tipo LocalDate per poter essere utilizzato all'interno
 	*della TreeMap.
 	*@return LocalDate.parse L'oggetto convertito il LocalDate.
