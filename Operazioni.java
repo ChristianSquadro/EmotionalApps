@@ -18,7 +18,7 @@ public class Operazioni {
 	*nell'istanza di TreeMapEventi modificandolo oppure inserendolo se non è presente.
 	*@param filename Il nome del file.
 	*@throws IOException se il file non viene trovato.
-	+@throws EventiException se gli input degli eventi non sono validi.
+	*@throws EventiException se gli input degli eventi non sono validi.
 	*/
 	static void Import (String filename) throws IOException
 	{
