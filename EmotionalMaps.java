@@ -6,6 +6,9 @@ import java.util.List;
 
 /**
 *Classe principale dell'applicazione EmotionalMap.
+* @author Christian Squadrito 736926 
+* @author Andrea Fedeli 736839 
+* @version 1.0
 */
 public class EmotionalMaps {
 	
