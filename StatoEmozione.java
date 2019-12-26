@@ -16,7 +16,7 @@ public enum StatoEmozione {
 	/**
 	*Costruisce un'istanza dell'enum StatoEmozione ricevendo come
 	*argomento emozione.
-	*@param emozione l'emozione che si vuole creare.
+	*@param emozione L'emozione che si vuole creare.
 	*/
 	private StatoEmozione (String emozione)
 	{
