@@ -4,15 +4,15 @@ package soluzione;
 
 /**
 *La classe ComandiException è una estensione di Throwable che
-*indica errori sollevati dalla classe Comandi.
+*viene sollevata dalla classe Comandi quando si hanno errori di input .
 */
 
 public class ComandiException  extends Throwable
 {
 	/**
-	*Costruisco un'istanza di ComandiException che indica un'eccezione
-	*non controllata della classe Comandi aggiungendo un messaggio
-	*personalizzato.
+	*Instanzia un'oggetto di ComandiException. E' un'eccezione
+	*controllata e permette di avere un messaggio
+	*che riguarda il motivo dell'eccezione.
 	*@param message il messaggio di errore
 	*/
 	public ComandiException (String message)
