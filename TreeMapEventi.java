@@ -10,7 +10,7 @@ import java.util.TreeMap;
 /**
 *TreeMapEventi estende la classe TreeMap che conterrà
 *istanze della classe Evento.
-*I suoi elementi sono ordinati per Data in base a quando l'evento si è verificato e ogni elemento della TreeMap contiene un HashSet di Eventi.
+*Ogni elemento della TreeMap contiene un HashSet di Eventi e sono ordinati in base alla Data quando l'evento si è verificato.
 */
 public class TreeMapEventi extends TreeMap<LocalDate,HashSet<Evento>> {
 
