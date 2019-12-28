@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
-*Le istanze della classe Operazioni modellano le attività da svolgere quando
+*Le istanze della classe Operazioni modellano le attività che svolgerà il programma quando
 *si legge il Comandi.txt.
 */
 public class Operazioni {
@@ -35,7 +35,12 @@ public class Operazioni {
 			try
 			{
 			  LocalDate timestamp=convertToLocalDate(campiEvento[2]);
+			  //creo l'instanza evento	
 			  Evento evento=new Evento(campiEvento[0],campiEvento[1],campiEvento[3],campiEvento[4],campiEvento[5]);
+			  /**
+			  *se è stata inserita la data per quel evento, allora modifico l'hashset di eventi inserendo l'evento; 
+		          *se no eseguo il metodo put che inserisce la data mancante e crea l'hashset inserendo l'evento
+			  */
 			  if (EmotionalMaps.treeEventi.containsKey(timestamp))
 			  {
 				  if(!EmotionalMaps.treeEventi.modify(timestamp,evento))
@@ -70,6 +75,7 @@ public class Operazioni {
 		SortedMap<LocalDate,HashSet<Evento>> subMap;
 		ArrayList<int[][]> tmpEmotionalMap=new ArrayList<int[][]>();
 		int[][] Utenti_attivi=new int[NumPOI][NumStatiEmozione],AllUtenti=new int[NumPOI][NumStatiEmozione];
+		//array istanziati per inserire il numero di occorenze di eventi per ogni POI
 		int[] NumEventiPOIUtenti_attivi=new int[NumPOI],NumEventiPOIAllUtenti=new int[NumPOI];
 		
 		
@@ -88,11 +94,17 @@ public class Operazioni {
 				}
 		}
 		
-		//carico
+		//ad ogni data avrò un HashSet
 		for (HashSet<Evento> hashsetEventi : subMap.values())
 		{
+			//per ogni Hashet avrò un evento
 			for(Evento evento : hashsetEventi)
 			{
+				/**
+				*avrò l'esatta posizione che mi indicherà quale cella della matrice devo
+				*incrementare grazie alla posizione restituità per quella emozione a quel POI di quel Evento
+				*(Ogni enum ha un ordinale per ogni enumerazione di costanti)
+				*/
 				int posPuntoInteresse=evento.getPOI().ordinal();
 				int posEmozione=evento.getStatoEmozione().ordinal();
 				
@@ -111,10 +123,12 @@ public class Operazioni {
 		for(int i=0;i<NumPOI;i++)
 			for(int j=0;j<NumStatiEmozione;j++)
 			{
+				//uso una variabile buffer per poter fare la conversione da int a double del risultato della divisione  
 				double calcolo;
 				if (NumEventiPOIUtenti_attivi[i]!=0)
 				{
 					calcolo=((double)Utenti_attivi[i][j]/NumEventiPOIUtenti_attivi[i])*100;
+					//riconverto la variabile calcolo ad int (perche le mappe sono int) arrotondando per eccesso
 					Utenti_attivi[i][j]=(int)Math.round(calcolo);
 				}
 				
