@@ -11,7 +11,7 @@ public class ComandiException  extends Throwable
 {
 	/**
 	*Instanzia un'oggetto di ComandiException. E' un'eccezione
-	*controllata e permette di avere un messaggio
+	*controllata e permette di inserire un messaggio
 	*che riguarda il motivo dell'eccezione.
 	*@param message il messaggio di errore
 	*/
