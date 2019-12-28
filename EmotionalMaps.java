@@ -24,6 +24,7 @@ public class EmotionalMaps {
 	/**
 	*Esegue l'applicazione.
 	*@throws IOException se il file Comandi.txt non viene trovato
+	*@throws ComandiException se uno dei comandi non rispetta il formato predefinito
 	*/
 	public static void main(String[] args) throws IOException
 	{
@@ -41,7 +42,7 @@ public class EmotionalMaps {
 		{
 			path=br.readLine();
 			if (path == "")
-				System.out.println("Inserire un percorso valido per la lettura del file!\n");
+				System.out.println("Percorso vuoto!\n");
 			file = new File(path);
 			//leggo il file Comandi.txt
 			br = new BufferedReader(new FileReader(file));
@@ -57,7 +58,8 @@ public class EmotionalMaps {
 				//Se il comando letto è import
 				if(comando.matches("import(.+)"))
 				{
-					path=path.replace("Comandi.txt", "");//per togliere comandi.txt e far rimanere solo il percorso
+					//per ottenere solo il percorso del file
+					path=path.replace("Comandi.txt", "");
 					Operazioni.Import(path+comandoArgomento);
 				}
 				else
@@ -65,6 +67,7 @@ public class EmotionalMaps {
 					//Se il comando letto è create_map
 					if(comando.matches("create_map(.+)") && comandoArgomento.contains("-"))
 					{
+						//Per ottenere la data iniziale e quella finale
 						String[] intervalloData=comandoArgomento.split("-");
 						emotionalMap=Operazioni.CreateMap(intervalloData[0],intervalloData[1]);
 						StampaMap();
